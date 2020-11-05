@@ -18,6 +18,10 @@ interface IProp {
 
 const ResultsList: FC<IProp> = ({ title, results,}) => {
   const navigation = useNavigation()
+
+  if (!results.length){
+    return null
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}> {title} </Text>
@@ -29,7 +33,7 @@ const ResultsList: FC<IProp> = ({ title, results,}) => {
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
-              onPress={() => navigation.navigate("ResultsShow",{item})}
+              onPress={() => navigation.navigate("ResultsShow",{id:item.id})}
             >
               <ResultsDetail result={item} />
             </TouchableOpacity>
