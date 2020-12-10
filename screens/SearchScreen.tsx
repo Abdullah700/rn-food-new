@@ -1,17 +1,17 @@
-import React, { FC, useState } from "react";
-import { ScrollView, StyleSheet, Text, View} from "react-native";
+import { createStackNavigator } from '@react-navigation/stack';
+import React, { FC, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import SearchBar from "../components/SearchBar";
-import useResults from "../hooks/useResults";
-import ResultsList from "../components/ResultsList";
-import { IBusiness } from "../types/IBusiness";
-import {SafeAreaView} from "react-native-safe-area-context";
-import {createStackNavigator} from "@react-navigation/stack";
-import {RootStackParamList} from "../types/types";
+import ResultsList from '../components/ResultsList';
+import SearchBar from '../components/SearchBar';
+import { useResults } from '../hooks/useResults';
+import { IBusiness } from '../types/IBusiness';
+import { RootStackParamList } from '../types/types';
 
 const SearchScreen: FC = () => {
   const [term, setTerm] = useState<string>("");
-  const [{ searchApi }, { results }, { errMsg }] = useResults();
+  const [{ searchApi , results , errMsg }] = useResults();
     const Stack = createStackNavigator<RootStackParamList>();
   const filterResultsByPrice = (price: string): IBusiness[] => {
     return results.filter((result) => {

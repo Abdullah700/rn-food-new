@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
+import yelp from '../api/yelp';
+import { IBusiness, IBusinessRes } from '../types/IBusiness';
+import { IResultsHook } from '../types/IResultsHook';
 
-import { IBusiness, IBusinessRes } from "../types/IBusiness";
-import { IResultsHook } from "../types/IResultsHook";
-import yelp from "../api/yelp";
-
-const useResult: IResultsHook = () => {
+const useResults: IResultsHook = () => {
   const [results, setResults] = useState<IBusiness[]>([]);
   const [errMsg, setErrMsg] = useState<string>("");
 
@@ -29,7 +28,7 @@ const useResult: IResultsHook = () => {
     searchApi("");
   }, []);
 
-  return [{ searchApi }, { results }, { errMsg }];
+  return [{ searchApi, results, errMsg }];
 };
 
-export default useResult;
+export { useResults };
